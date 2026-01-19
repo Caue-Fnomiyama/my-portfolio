@@ -71,6 +71,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 80px;
+  text-align: left !important;
 }
 
 .widget1 {
@@ -88,11 +89,48 @@ header {
   width: calc(100% - 80px);
   height: auto;
   border-radius: 32px;
-  background: #ffdf8d;
+  background: #c8d9f8;
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.pet {
+  position: relative;
+  width: calc(100% - 80px);
+  height: 300px;
+  border-radius: 32px;
+  background-image: url(/media/pet.jpg);
+  background-size: cover;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  & h3, span, p {
+    color: #fff !important;
+    z-index: 1;
+  }
+
+  overflow: hidden;
+}
+
+.back {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  right: 0;
+  top: 0;
+  background: #00000019;
+  z-index: 0;
+}
+
+.pin {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-size: 25px !important;
+  transform: rotate(35deg);
 }
 
 .skills-box {
@@ -106,8 +144,75 @@ header {
 
   & b {
     margin-left: 10px;
-   
   }
+}
+
+.notes {
+  position: relative;
+  width: calc(100% - 80px);
+  height: auto;
+  border-radius: 32px;
+  background: #f9eec4;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notes-box {
+  width: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #ffde89a8;
+  position: relative;
+
+  & h1 {
+    color: #463405;
+  }
+}
+
+.line1 {
+  width: 1px;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-color: #f4c95d;
+}
+
+.line2 {
+  width: 1px;
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background-color: #f4c95d;
+}
+
+.line2 {
+  width: 1px;
+  height: 100%;
+}
+
+.ball1 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f4c95d;
+  border-radius: 50%;
+  top: -5px;
+  left: -5px;
+}
+
+.ball2 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f4c95d;
+  border-radius: 50%;
+  bottom: -5px;
+  right: -5px;
 }
 
 .title-box {
