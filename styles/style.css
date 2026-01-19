@@ -38,10 +38,28 @@ a {
 
 header {
   width: 100dvw;
-  height: 80px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.date-box {
+  width: 85%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.ps {
+  width: auto;
+  height: auto;
+  padding: 5px 10px;
+  border-radius: 32px;
+  background: #4cb782;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app {
@@ -52,7 +70,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 80px;
 }
 
 .widget1 {
@@ -60,10 +78,9 @@ header {
   width: calc(100% - 80px);
   height: 200px;
   border-radius: 32px;
-  background: #fff;
+  background: #d7fbe9;
   padding: 40px;
   display: flex;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.04);
 }
 
 .title-box {
@@ -74,8 +91,7 @@ header {
 
   & {
     h2 {
-      color: #9b2226;
-      line-height: 1;
+      color: #398b62;
     }
   }
 }
@@ -108,32 +124,46 @@ header {
   bottom: 40px;
   background-image: url(/media/minhafoto.jpg);
   background-size: cover;
-  border: 3px solid #222;
+  border: 3px solid #4cb782;
+}
+
+.contact-box {
+  position: relative;
+  padding-top: 8%;
+  width: 100%;
+
+  & h1 {
+    position: absolute;
+    top: 0;
+  }
 }
 
 .box {
   position: relative;
   width: 100%;
-  gap: 20px;
   height: auto;
   display: flex;
   justify-content: space-between;
 }
 
-i {
-  font-size: 20px;
-}
-
-.widget2 {
-  position: relative;
-  width: auto;
-  height: calc((50% - 80px) -20px);
-  border-radius: 32px;
+.linkedin,
+.insta,
+.mail,
+.wpp {
   display: flex;
+  align-items: center;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.04);
-  padding: 40px;
+  border-radius: 26px;
+  padding: 20px;
+  background-color: #d7fbe96a;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-top: 1px solid #fff;
+
+  & i {
+    font-size: 20px;
+    color: #222;
+  }
 }
 
 .social-box {
@@ -252,7 +282,7 @@ i {
 @media (max-width: 768px) {
   .app {
     position: relative;
-    width: 80%;
+    width: 90%;
     height: calc(100% - 80px);
     display: flex;
     flex-direction: column;
