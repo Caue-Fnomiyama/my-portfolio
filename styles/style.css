@@ -64,7 +64,7 @@ header {
 
 .app {
   position: relative;
-  width: 40%;
+  width: 30%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -261,13 +261,19 @@ header {
 
 .contact-box {
   position: relative;
-  padding-top: 8%;
+  padding-top: 9%;
   width: 100%;
 
   & h1 {
     position: absolute;
     top: 0;
   }
+}
+
+.contact{
+  position: relative;
+  width: 100%;
+
 }
 
 .box {
@@ -287,10 +293,10 @@ header {
   justify-content: center;
   border-radius: 26px;
   padding: 20px;
-  background-color: #d7fbe96a;
+  background-color: #d7fbe97c;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  border-top: 1px solid #fff;
+  border-top: 2px solid #fff;
 
   & i {
     font-size: 20px;
@@ -421,5 +427,11 @@ header {
     gap: 40px;
     align-items: center;
     justify-content: center;
+    
+    & h1 {
+    
+      left: 0;
+    }
+    
   }
 }

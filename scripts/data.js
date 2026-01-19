@@ -1,4 +1,10 @@
-
+function dataLocal() {
+  return new Date().toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  });
+}
 
 fetch('https://worldtimeapi.org/api/timezone/America/Sao_Paulo')
   .then(r => r.json())
