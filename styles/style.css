@@ -64,7 +64,7 @@ header {
 
 .app {
   position: relative;
-  width: 60%;
+  width: 40%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -414,10 +414,11 @@ header {
 @media (max-width: 768px) {
   .app {
     position: relative;
-    width: 90%;
+    width: calc(100% - 80px);
     height: calc(100% - 80px);
     display: flex;
     flex-direction: column;
+    gap: 40px;
     align-items: center;
     justify-content: center;
   }
