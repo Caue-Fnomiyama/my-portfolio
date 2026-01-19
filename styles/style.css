@@ -76,11 +76,38 @@ header {
 .widget1 {
   position: relative;
   width: calc(100% - 80px);
-  height: 200px;
+  height: 230px;
   border-radius: 32px;
   background: #d7fbe9;
   padding: 40px;
   display: flex;
+}
+
+.skills {
+  position: relative;
+  width: calc(100% - 80px);
+  height: auto;
+  border-radius: 32px;
+  background: #ffdf8d;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skills-box {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 20px;
+  height: auto;
+  border-left: 1px solid #222;
+
+  & b {
+    margin-left: 10px;
+   
+  }
 }
 
 .title-box {
