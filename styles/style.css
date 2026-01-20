@@ -90,15 +90,16 @@ header {
   width: calc(100% - 80px);
   height: auto;
   border-radius: 32px;
-  background: #d7fbe9;
+  background: #d7f4fb;
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+    font-size: 20px;
 
   
   & b {
-    color: #398b62 !important;
+    color: #39848b !important;
   }
 }
 
@@ -150,7 +151,7 @@ header {
   height: 1000px;
   right: 0;
   top: 0;
-  background: #00000042;
+  background: #0000002b;
   z-index: 0;
 }
 
@@ -335,7 +336,7 @@ header {
   background-color: #d7fbe97c;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  border-top: 2px solid #fff;
+  border-top: 1px solid #fff;
 
   & i {
     font-size: 20px;
