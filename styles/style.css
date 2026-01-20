@@ -37,7 +37,8 @@ a {
 }
 
 header {
-  width: 100dvw;
+  width: 90%;
+  position: relative;
   height: 160px;
   display: flex;
   align-items: center;
@@ -45,7 +46,7 @@ header {
 }
 
 .date-box {
-  width: 85%;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   display: flex;
