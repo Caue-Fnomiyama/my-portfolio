@@ -214,6 +214,37 @@ header {
   }
 }
 
+.status {
+  position: relative;
+  width: calc(100% - 80px);
+  height: auto;
+  border-radius: 32px;
+  background: #d7fbe9;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.status-box {
+  padding: 10px;
+  border-radius: 16px;
+  width: 150px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #4cb782;
+  position: relative;
+
+  & h1 {
+    color: #1e4a34;
+  }
+
+  & p {
+    font-weight: bold;
+  }
+}
+
 .line1 {
   width: 1px;
   top: 0;
