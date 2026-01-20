@@ -126,7 +126,7 @@ header {
 .londres {
   position: relative;
   width: calc(100% - 80px);
-  height: 280px;
+  height: 250px;
   border-radius: 32px;
   background-image: url(/media/londres.jpg);
   background-position: bottom;
@@ -236,9 +236,7 @@ header {
   background-color: #4cb782;
   position: relative;
 
-  & h1 {
-    color: #1e4a34;
-  }
+
 
   & p {
     font-weight: bold;
