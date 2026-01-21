@@ -82,11 +82,31 @@ header {
 .widget1 {
   position: relative;
   width: calc(100% - 80px);
-  height: 230px;
+  height: auto;
   border-radius: 32px;
   background: #d7fbe9;
   padding: 40px;
   display: flex;
+}
+
+.title-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  & {
+    h2 {
+      color: #398b62;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .skills {
@@ -301,25 +321,6 @@ header {
   background-color: #398b62;
 }
 
-.title-box {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  & {
-    h2 {
-      color: #398b62;
-    }
-  }
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
 .title {
   display: flex;
   flex-direction: column;
@@ -499,10 +500,10 @@ header {
 }
 
 .me {
-   backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   position: relative;
-  gap: 5px;
+  gap: 10px;
   padding: 40px;
   width: calc(100% - 80px);
   background-image: url(/media/eu.png);
@@ -513,7 +514,7 @@ header {
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
-    filter: grayscale(0);
+  filter: grayscale(0);
 
   & h1 {
     color: #f5f5f7 !important;
