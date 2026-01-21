@@ -93,7 +93,7 @@ header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 
   & {
     h2 {
@@ -102,6 +102,9 @@ header {
     }
   }
 }
+
+
+
 
 .profile {
   display: flex;
@@ -424,13 +427,41 @@ header {
   display: flex;
 }
 
+.title-box-music {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .album {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-image: url(/media/bad-album.png);
   background-size: cover;
   z-index: 2;
 }
+
+.vinyl {
+  position: absolute;
+  right: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-image: url(/media/Vinyl.png);
+  background-size: cover;
+}
+
+.disc {
+  position: absolute;
+  right: 0px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-image: url(/media/disc.png);
+  background-size: cover;
+}
+
 
 .bad {
   align-items: center;
@@ -445,7 +476,7 @@ header {
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   color: #efefef;
 
   & i {
@@ -462,7 +493,7 @@ header {
   flex-direction: column;
   width: 100%;
   position: relative;
-  gap: 5px;
+  gap: 15px;
 }
 
 .temp {

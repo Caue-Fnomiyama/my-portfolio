@@ -1,52 +1,107 @@
-const music = document.getElementById('music-player');
-const playPauseBtn = document.getElementById('play-pause-btn');
-const mainIcon = document.getElementById('main-icon');
-const restartBtn = document.getElementById('restart-btn');
-const progressBar = document.getElementById('progress-bar');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById('music-player');
+  const playBtn = document.getElementById('play-pause-btn');
+  const mainIcon = document.getElementById('main-icon');
+  const progressBar = document.getElementById('progress-bar');
+  const currentTimeTxt = document.getElementById('current-time');
+  const durationTxt = document.getElementById('duration');
+  const restartBtn = document.getElementById('restart-btn');
+  
+  const album = document.querySelector('.album');
+  const vinyl = document.querySelector('.vinyl');
+  const disc = document.querySelector('.disc');
+  const badContainer = document.querySelector('.bad');
 
-// 1. Função Play/Pause
-playPauseBtn.addEventListener('click', () => {
-    if (music.paused) {
-        music.play();
-        mainIcon.classList.replace('fa-play', 'fa-pause');
-    } else {
-        music.pause();
-        mainIcon.classList.replace('fa-pause', 'fa-play');
+  const style = document.createElement('style');
+  style.textContent = `
+    .bad { 
+      position: relative; 
+      display: flex; 
+      align-items: center; 
+      width: 100%; 
+      overflow: visible;    
     }
-});
-
-// 2. Reiniciar Música
-restartBtn.addEventListener('click', () => {
-    music.currentTime = 0;
-});
-
-// 3. Atualizar Barra e Timer
-music.addEventListener('timeupdate', () => {
-    const { duration, currentTime } = music;
+    .album { 
+      z-index: 5; 
+      position: relative; 
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); 
+    }
+    .vinyl { 
+      z-index: 3; 
+      position: absolute; 
+      left: 0;
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .disc { 
+      z-index: 4; 
+      position: absolute; 
+      left: 0;
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
     
-    // Atualiza a largura da barra (porcentagem)
-    const progressPercent = (currentTime / duration) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+    .playing-state .album { transform: translateX(-5px); }
+    
+    .playing-state .vinyl { 
+      transform: translateX(calc(100% - 40px)); 
+    }
+    
+    .playing-state .disc { 
+      transform: translateX(calc(100% - 40px));
+    }
 
-    // Formatação do tempo atual
-    currentTimeEl.innerText = formatTime(currentTime);
-});
+    @keyframes spinDiscOnly {
+      from { transform: translateX(calc(100% - 40px)) rotate(0deg); }
+      to { transform: translateX(calc(100% - 40px)) rotate(360deg); }
+    }
 
-// 4. Carregar duração total quando o arquivo abrir
-music.addEventListener('loadedmetadata', () => {
-    durationEl.innerText = formatTime(music.duration);
-});
+    .spinning-disc {
+      animation: spinDiscOnly 5.5s linear infinite !important;
+    }
+  `;
+  document.head.appendChild(style);
 
-// Função auxiliar para formatar segundos em 0:00
-function formatTime(time) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
+  const formatTime = (s) => {
+    const min = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+  };
 
-// Quando a música acabar, volta o ícone para Play
-music.addEventListener('ended', () => {
-    mainIcon.classList.replace('fa-pause', 'fa-play');
+  const togglePlay = () => {
+    if (audio.paused) {
+      audio.play();
+      mainIcon.classList.replace('fa-play', 'fa-pause');
+      badContainer.classList.add('playing-state');
+      setTimeout(() => {
+        if(!audio.paused) disc.classList.add('spinning-disc');
+      }, 900);
+    } else {
+      audio.pause();
+      mainIcon.classList.replace('fa-pause', 'fa-play');
+      badContainer.classList.remove('playing-state');
+      disc.classList.remove('spinning-disc');
+    }
+  };
+
+  audio.addEventListener('timeupdate', () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${percent}%`;
+    currentTimeTxt.textContent = formatTime(audio.currentTime);
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    durationTxt.textContent = formatTime(audio.duration);
+  });
+
+  playBtn.addEventListener('click', togglePlay);
+  
+  restartBtn.addEventListener('click', () => {
+    audio.currentTime = 0;
+    if (audio.paused) togglePlay();
+  });
+
+  document.querySelector('.bar-box').addEventListener('click', (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    audio.currentTime = (x / rect.width) * audio.duration;
+  });
 });
