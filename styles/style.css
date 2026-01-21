@@ -435,14 +435,7 @@ header {
   position: relative;
 }
 
-@keyframes rodar {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 .buttons-box {
   width: 100%;
