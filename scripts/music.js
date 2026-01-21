@@ -24,34 +24,33 @@ document.addEventListener("DOMContentLoaded", () => {
     .album { 
       z-index: 5; 
       position: relative; 
-      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); 
     }
     .vinyl { 
       z-index: 3; 
       position: absolute; 
       left: 0;
-      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1);
     }
     .disc { 
       z-index: 4; 
       position: absolute; 
       left: 0;
-      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1);
     }
     
-    .playing-state .album { transform: translateX(-5px); }
+    
     
     .playing-state .vinyl { 
-      transform: translateX(calc(100% - 40px)); 
+      transform: translateX(calc(100% - 60px)); 
     }
     
     .playing-state .disc { 
-      transform: translateX(calc(100% - 40px));
+      transform: translateX(calc(100% - 60px));
     }
 
     @keyframes spinDiscOnly {
-      from { transform: translateX(calc(100% - 40px)) rotate(0deg); }
-      to { transform: translateX(calc(100% - 40px)) rotate(360deg); }
+      from { transform: translateX(calc(100% - 60px)) rotate(0deg); }
+      to { transform: translateX(calc(100% - 60px)) rotate(360deg); }
     }
 
     .spinning-disc {
