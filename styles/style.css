@@ -218,7 +218,7 @@ header {
   width: calc(100% - 80px);
   height: auto;
   border-radius: 32px;
-  background: #D7FBE9;
+  background: #f5f1b7;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -230,11 +230,11 @@ header {
   align-items: center;
   display: flex;
   justify-content: center;
-  background-color: #4cb78294;
+  background-color: #ffff0037;
   position: relative;
 
   & h1 {
-    color: #112a1e;
+    color: #5c4d12;
   }
 }
 
@@ -244,7 +244,7 @@ header {
   height: 100%;
   position: absolute;
   left: 0;
-  background-color: #398b62;
+  background-color: #f0d001;
 }
 
 .line2 {
@@ -253,14 +253,14 @@ header {
   height: 100%;
   position: absolute;
   right: 0;
-  background-color: #398b62;
+  background-color: #f0d001;
 }
 
 .ball1 {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #398b62;
+  background-color: #f0d001;
   border-radius: 50%;
   top: -5px;
   left: -5px;
@@ -270,7 +270,7 @@ header {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #398b62;
+  background-color: #f0d001;
   border-radius: 50%;
   bottom: -5px;
   right: -5px;
