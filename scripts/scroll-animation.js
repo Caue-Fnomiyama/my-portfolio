@@ -2,41 +2,63 @@ document.addEventListener("DOMContentLoaded", () => {
   const style = document.createElement("style");
   style.textContent = `
     :root {
-      /* Curva Rápida: Explosiva no início, suave no fim (0.8s total) */
-      --fast-ease: cubic-bezier(0.25, 1, 0.3, 1);
-      --glass-blur-initial: blur(10px);
+      --fluid-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      /* O blur exato de 14px solicitado */
+      --glass-blur: blur(14px);
     }
 
-    /* --- BASE DA ANIMAÇÃO --- */
+    /* --- ANIMAÇÃO DOS WIDGETS --- */
     .reveal-base { 
       opacity: 0; 
       will-change: transform, opacity;
-      filter: var(--glass-blur-initial) grayscale(80%);
+      filter: blur(8px); /* Blur de entrada (animação) */
       transition: 
-        transform 0.8s var(--fast-ease), 
-        opacity 0.8s var(--fast-ease), 
-        filter 0.8s var(--fast-ease);
+        transform 1.2s var(--fluid-ease), 
+        opacity 1.2s var(--fluid-ease), 
+        filter 1.2s var(--fluid-ease);
     }
 
-    /* ESTADO ATIVO */
     .active-node { 
       opacity: 1 !important; 
-      transform: translate3d(0, 0, 0) scale(1) !important; 
-      filter: none !important;
+      transform: translate3d(0, 0, 0) !important; 
+      filter: blur(0px) !important;
     }
 
-    /* --- TIPOS DE MOVIMENTO (Rápidos) --- */
-    .type-spring { transform: translateY(60px) scale(0.95); }
-    .type-slide { transform: translateX(-60px); }
-    .type-float { transform: translateY(50px); }
-    .type-flip { transform: perspective(1000px) rotateX(-20deg); }
-    .type-zoom { transform: scale(1.15); filter: blur(20px); }
+    /* Tipos de movimento */
+    .type-spring { transform: translateY(50px); }
+    .type-slide { transform: translateX(-40px); }
+    .type-float { transform: translateY(30px); }
+    .type-flip { transform: perspective(1000px) rotateX(-10deg); }
+    .type-zoom { transform: scale(1.05); }
 
-    /* --- EFEITO CASCATA (Itens Internos) --- */
+    /* =========================================
+       FOCO: .LINKEDIN, .MAIL, .INSTA, .WPP
+    ========================================= */
+    .linkedin, .mail, .insta, .wpp {
+      /* Remove qualquer filtro de animação que venha do pai para não criar "sombra" */
+      filter: none !important; 
+      
+      /* Aplica APENAS o blur no fundo */
+      backdrop-filter: var(--glass-blur) !important;
+      -webkit-backdrop-filter: var(--glass-blur) !important;
+      
+      /* Cor de fundo semi-transparente para o blur ser visível */
+      background-color: rgba(215, 251, 233, 0.4) !important;
+      
+      /* Remove sombras indesejadas */
+      box-shadow: none !important;
+      
+      /* Mantém visível e estável */
+      opacity: 1 !important;
+      transform: none !important;
+      will-change: backdrop-filter;
+    }
+
+    /* Efeito de cascata apenas para textos e outros ícones */
     .stagger-child {
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s var(--fast-ease);
+      transform: translateY(15px);
+      transition: transform 0.8s var(--fluid-ease), opacity 0.8s var(--fluid-ease);
     }
 
     .active-node .stagger-child {
@@ -45,73 +67,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
-       CORREÇÃO DO BLUR (Contatos)
-       Isolamos o backdrop-filter da animação de opacidade
+       MARCA-TEXTO ANIMADO (NOTES)
     ========================================= */
-    .contact-box .linkedin, 
-    .contact-box .insta, 
-    .contact-box .mail, 
-    .contact-box .wpp {
-      /* Cria uma nova camada de renderização na GPU */
-      transform: translateZ(0); 
-      /* Força o blur */
-      backdrop-filter: blur(8px) !important;
-      -webkit-backdrop-filter: blur(8px) !important;
-      background-color: rgba(215, 251, 233, 0.25) !important;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+    .notes-box { position: relative; overflow: hidden; }
     
-    /* Hover leve para interatividade */
-    .contact-box .linkedin:hover, .contact-box .insta:hover, .contact-box .mail:hover, .contact-box .wpp:hover {
-       background-color: rgba(215, 251, 233, 0.5) !important;
-       transform: translateZ(0) scale(1.05);
-    }
-
-    /* =========================================
-       ANIMAÇÃO DO MARCA-TEXTO (NOTES)
-    ========================================= */
-    
-    .notes-box {
-      position: relative;
-      overflow: hidden; /* Importante para o efeito de "entrar em cena" */
-    }
-
-    /* 1. Animação dos Colchetes (Line2 e Ball2) */
-    /* Eles começam escondidos na ESQUERDA (junto com a Line1) */
-    .notes-box .line2,
-    .notes-box .ball2 {
+    .notes-box .line2, .notes-box .ball2 {
       opacity: 0;
-      /* Move para a esquerda, sobrepondo o início */
       transform: translateX(-100px); 
-      transition: transform 1s var(--fast-ease), opacity 0.5s ease;
+      transition: transform 1.2s var(--fluid-ease), opacity 0.8s ease;
     }
 
-    /* Quando ativo, deslizam para a DIREITA (posição original) */
-    .active-node .notes-box .line2,
-    .active-node .notes-box .ball2 {
+    .active-node .notes-box .line2, .active-node .notes-box .ball2 {
       opacity: 1;
       transform: translateX(0);
-      transition-delay: 0.1s; /* Pequeno delay para sincronizar com o texto */
+      transition-delay: 0.3s;
     }
 
-    /* 2. Animação do Texto Grifado */
     .notes-box h1 {
       position: relative;
-      /* Gradiente verde marca-texto */
       background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
       background-repeat: no-repeat;
-      /* Começa invisível (largura 0) */
-      background-size: 0% 50%; 
-      background-position: 0% 85%; /* Posição inferior */
-      transition: background-size 1s var(--fast-ease);
+      background-size: 0% 40%; 
+      background-position: 0% 85%;
+      transition: background-size 1.2s var(--fluid-ease);
       padding: 0 4px;
-      z-index: 2;
     }
 
-    /* Expande para a direita acompanhando os colchetes */
     .active-node .notes-box h1 {
-      background-size: 100% 50%;
-      transition-delay: 0.1s;
+      background-size: 100% 40%;
+      transition-delay: 0.3s;
     }
   `;
   document.head.appendChild(style);
@@ -134,32 +118,24 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         const el = entry.target;
         
-        // CORREÇÃO DO ERRO AQUI:
-        // Removi o ">" antes de "p" e "i". Agora o seletor é válido.
-        // Também removi os contatos (.linkedin etc) daqui para não quebrar o blur.
-        const children = el.querySelectorAll(
-          "h1:not(.notes-box h1), h2, h3, h4, p, span, i, .line3, .skills-box p, .perfil"
-        );
+        // Seleciona os filhos para o efeito de entrada, mas ignora os botões de contato
+        const children = el.querySelectorAll("h2, h3, h4, p, span, i:not(.fa-brands, .fa-solid), .line3, .skills-box p, .perfil");
 
         if (entry.isIntersecting) {
           el.classList.add("active-node");
           children.forEach((child, i) => {
             child.classList.add("stagger-child");
-            // Delay curto e rápido (0.05s)
-            child.style.transitionDelay = `${0.05 + i * 0.05}s`;
+            child.style.transitionDelay = `${0.1 + i * 0.05}s`;
           });
         } else {
-          el.classList.remove("active-node");
-          children.forEach((child) => {
-            child.style.transitionDelay = "0s";
-          });
+          // Mantém o estado se estiver apenas scrollando de leve (evita o pisca)
+          if (entry.boundingClientRect.top > 150) {
+            el.classList.remove("active-node");
+          }
         }
       });
     },
-    {
-      threshold: 0.15, 
-      rootMargin: "0px 0px -10% 0px",
-    }
+    { threshold: 0.05, rootMargin: "0px 0px -50px 0px" }
   );
 
   config.forEach((item) => {

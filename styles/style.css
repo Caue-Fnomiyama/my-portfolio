@@ -327,7 +327,7 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  background: #ffffff;
+  background: #fffbe6;
   padding: var(--common-padding);
   display: flex;
   flex-direction: column;
@@ -395,14 +395,16 @@ header {
   border-radius: 1.625rem;
   padding: var(--spacing-md);
   background-color: #d7fbe97c;
+  border-top: var(--border-white);
   backdrop-filter: blur(3px) !important;
   -webkit-backdrop-filter: blur(3px) !important;
-  border-top: var(--border-white);
 
   & i {
     color: var(--text-dark);
   }
 }
+
+
 
 .social-box {
   width: 100%;
