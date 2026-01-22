@@ -116,7 +116,7 @@ header {
   height: auto;
   border-radius: var(--radius-lg);
   background-color: #d1e4e8;
-  border-top: var(--border-white);
+
   padding: var(--common-padding);
   display: flex;
 }
@@ -157,7 +157,7 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  border-top: var(--border-white);
+
   background: #d2e8db;
   padding: var(--common-padding);
   display: flex;
@@ -207,7 +207,6 @@ header {
 }
 
 .londres {
-  border-top: var(--border-white);
   position: relative;
   width: 100%;
   height: 22.625rem;
@@ -263,7 +262,6 @@ header {
 }
 
 .notes {
-  border-top: var(--border-white);
   position: relative;
   width: 100%;
   height: auto;
@@ -327,7 +325,7 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  background: #fffbe6;
+  background: #fdfae8;
   padding: var(--common-padding);
   display: flex;
   flex-direction: column;
@@ -395,7 +393,7 @@ header {
   border-radius: 1.625rem;
   padding: var(--spacing-md);
   background-color: #d7fbe97c;
-  border-top: var(--border-white);
+
   backdrop-filter: blur(3px) !important;
   -webkit-backdrop-filter: blur(3px) !important;
 
@@ -403,8 +401,6 @@ header {
     color: var(--text-dark);
   }
 }
-
-
 
 .social-box {
   width: 100%;
@@ -426,7 +422,6 @@ header {
 }
 
 .widget-music {
-  border-top: var(--border-white);
   position: relative;
   width: 100%;
   height: auto;

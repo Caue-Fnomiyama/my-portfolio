@@ -83,14 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
       transition-delay: 0.3s;
     }
 
-    .notes-box h1 {
+    .notes-box  {
       position: relative;
-      background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+      background-image: linear-gradient(120deg, #4b3f7246 0%, #4b3f7246 100%);
       background-repeat: no-repeat;
-      background-size: 0% 40%; 
+      background-size: 0% 100%; 
       background-position: 0% 85%;
       transition: background-size 1.2s var(--fluid-ease);
-      padding: 0 4px;
     }
 
     .active-node .notes-box h1 {
