@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1);
     }
     
-
-    
     .playing-state .vinyl { 
       transform: translateX(calc(100% - 60px)); 
     }
@@ -81,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // --- ATUALIZAÇÃO DO PROGRESSO ---
   audio.addEventListener('timeupdate', () => {
     const percent = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = `${percent}%`;
@@ -91,6 +90,25 @@ document.addEventListener("DOMContentLoaded", () => {
     durationTxt.textContent = formatTime(audio.duration);
   });
 
+  // --- EVENTO DE FIM DA MÚSICA (SOLUÇÃO) ---
+  audio.addEventListener('ended', () => {
+    // 1. Reseta o áudio para o início
+    audio.currentTime = 0;
+    audio.pause();
+
+    // 2. Interface de Botão (Play)
+    mainIcon.classList.replace('fa-pause', 'fa-play');
+
+    // 3. Estética: Disco volta para o álbum
+    badContainer.classList.remove('playing-state');
+    disc.classList.remove('spinning-disc');
+
+    // 4. Reseta os textos e barra
+    progressBar.style.width = `0%`;
+    currentTimeTxt.textContent = "0:00";
+  });
+
+  // --- CONTROLES DE CLICK ---
   playBtn.addEventListener('click', togglePlay);
   
   restartBtn.addEventListener('click', () => {

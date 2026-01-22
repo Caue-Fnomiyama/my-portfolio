@@ -1,115 +1,202 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /* ==========================================================================
+     DIREÇÃO DE ARTE & ESTILO (CSS INJETADO)
+     Theme: iOS 18 / Apple Human Interface Guidelines
+     ========================================================================== */
   const style = document.createElement("style");
   style.textContent = `
     :root {
-      --fluid-ease: cubic-bezier(0.16, 1, 0.3, 1);
-      /* O blur exato de 14px solicitado */
-      --glass-blur: blur(14px);
+      /* Curva de Animação Apple (Spring Physics) */
+      --ios-ease: cubic-bezier(0.25, 1, 0.5, 1);
+      --glass-blur: blur(20px);
+      
+      /* Cores Semânticas iOS 18 */
+      --color-primary: #000000;
+      --color-secondary: #86868b;
+      --bg-metallic: linear-gradient(145deg, #ffffff 0%, #f2f2f7 100%);
+      --bg-blue-haze: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      --bg-mint: #eafbf3;
+      --bg-pro-dark: linear-gradient(145deg, #1c1c1e 0%, #000000 100%);
+      --bg-note: linear-gradient(135deg, #fff9c4 0%, #fff176 100%);
     }
 
-    /* --- ANIMAÇÃO DOS WIDGETS --- */
-    .reveal-base { 
+    /* TIPOGRAFIA REFINADA */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1 { letter-spacing: -0.02em; }
+     span { letter-spacing: -0.01em; color: var(--color-secondary); }
+
+    /* =========================================
+       WIDGET 1: PERFIL (Refinado - Metallic)
+       Correção de animação inclusa
+    ========================================= */
+    .widget1 {
+      
+   
+      /* Prepara para animação */
       opacity: 0; 
-      will-change: transform, opacity;
-      filter: blur(8px); /* Blur de entrada (animação) */
+      transform: translateY(30px);
+    }
+    
+    .widget1 .title-box h1 { color: #1d1d1f; font-size: 2.2rem; }
+    .widget1 .title-box p { color: #86868b; font-weight: 500; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; }
+    .widget1 h2 { font-weight: 400; color: #1d1d1f; font-size: 1.3rem; line-height: 1.4; max-width: 90%; }
+    
+    /* Contatos Minimalistas */
+    .contact-box .box { gap: 0px; }
+    .linkedin, .insta, .mail, .wpp {
+      backdrop-filter: blur(10px);
+   
+     
+      padding: 0 !important;
+      transition: all 0.3s var(--ios-ease);
+    }
+    
+    /* =========================================
+       SKILLS (Refinado - Blue Haze)
+       Correção de animação inclusa
+    ========================================= */
+    .skills {
+    background-color: #e8f0fa;
+      opacity: 0;
+    }
+    
+    .skills h1 { color: #000000; }
+    .skills-box { border-left: 1px solid rgba(25, 25, 25, 0.17); }
+    .skills-box p { 
+      font-size: 1.3rem; 
+      color: #000000; 
+      display: flex; 
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .skills-box p b { color: #147849 !important; }
+
+    /* =========================================
+       NOTES (Highlighter Functionality)
+    ========================================= */
+    .notes {
+      background: #ffffff !important;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .notes-box h1 {
+
+      background-size: 0% 100%;
+      background-repeat: no-repeat;
+      background-position: 0% 0%;
+      transition: background-size 1s var(--ios-ease);
+      padding: 0 4px;
+    }
+    .active-node .notes-box h1 { background-size: 100% 100%; transition-delay: 0.4s; }
+
+    /* =========================================
+       STATUS (Refinado - Mint)
+    ========================================= */
+   
+    /* =========================================
+       SETUP WIDGET (Pro Dark Mode)
+    ========================================= */
+    .setup-widget {
+      background: var(--bg-pro-dark) !important;
+      color: white;
+    }
+    .setup-widget .category { color: #86868b !important; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .setup-widget .model { color: #f5f5f7 !important; font-size: 1.1rem; font-weight: 500; }
+    .setup-icon i { color: #ffffff; }
+
+    /* =========================================
+       READING (Paper)
+    ========================================= */
+    .reading-widget { background: #fdf8f4 !important; } /* Papel suave */
+    .read-fill { background: #1d1d1f !important; }
+    .status-tag { background: #1d1d1f !important; color: white !important; font-weight: 600; letter-spacing: 0.05em; }
+
+    /* =========================================
+       CORE ANIMATION ENGINE
+    ========================================= */
+    .reveal-base {
+      opacity: 0 !important; /* Força invisibilidade inicial */
+      will-change: transform, opacity, filter;
+      filter: blur(10px);
       transition: 
-        transform 1.2s var(--fluid-ease), 
-        opacity 1.2s var(--fluid-ease), 
-        filter 1.2s var(--fluid-ease);
+        transform 1.0s var(--ios-ease), 
+        opacity 1.0s var(--ios-ease), 
+        filter 1.0s var(--ios-ease);
     }
 
-    .active-node { 
-      opacity: 1 !important; 
-      transform: translate3d(0, 0, 0) !important; 
+    .active-node {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) scale(1) !important;
       filter: blur(0px) !important;
     }
 
-    /* Tipos de movimento */
-    .type-spring { transform: translateY(50px); }
+    /* Hover "Lift" Effect (Apple TV style) */
+
+    /* Tipos de Entrada */
+    .type-spring { transform: translateY(60px) scale(0.95); }
     .type-slide { transform: translateX(-40px); }
-    .type-float { transform: translateY(30px); }
-    .type-flip { transform: perspective(1000px) rotateX(-10deg); }
-    .type-zoom { transform: scale(1.05); }
-
-    /* =========================================
-       FOCO: .LINKEDIN, .MAIL, .INSTA, .WPP
-    ========================================= */
-    .linkedin, .mail, .insta, .wpp {
-      /* Remove qualquer filtro de animação que venha do pai para não criar "sombra" */
-      filter: none !important; 
-      
-      /* Aplica APENAS o blur no fundo */
-      backdrop-filter: var(--glass-blur) !important;
-      -webkit-backdrop-filter: var(--glass-blur) !important;
-      
-      /* Cor de fundo semi-transparente para o blur ser visível */
-      background-color: rgba(215, 251, 233, 0.4) !important;
-      
-      /* Remove sombras indesejadas */
-      box-shadow: none !important;
-      
-      /* Mantém visível e estável */
-      opacity: 1 !important;
-      transform: none !important;
-      will-change: backdrop-filter;
-    }
-
-    /* Efeito de cascata apenas para textos e outros ícones */
+    .type-zoom { transform: scale(0.9); filter: blur(15px); }
+    
+    /* Cascata de Texto */
     .stagger-child {
       opacity: 0;
       transform: translateY(15px);
-      transition: transform 0.8s var(--fluid-ease), opacity 0.8s var(--fluid-ease);
+      transition: all 0.6s var(--ios-ease);
     }
-
     .active-node .stagger-child {
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* =========================================
-       MARCA-TEXTO ANIMADO (NOTES)
-    ========================================= */
-    .notes-box { position: relative; overflow: hidden; }
-    
-    .notes-box .line2, .notes-box .ball2 {
-      opacity: 0;
-      transform: translateX(-100px); 
-      transition: transform 1.2s var(--fluid-ease), opacity 0.8s ease;
-    }
-
-    .active-node .notes-box .line2, .active-node .notes-box .ball2 {
-      opacity: 1;
-      transform: translateX(0);
-      transition-delay: 0.3s;
-    }
-
-    .notes-box  {
-      position: relative;
-      background-image: linear-gradient(120deg, #4b3f7246 0%, #4b3f7246 100%);
-      background-repeat: no-repeat;
-      background-size: 0% 100%; 
-      background-position: 0% 85%;
-      transition: background-size 1.2s var(--fluid-ease);
-    }
-
-    .active-node .notes-box h1 {
-      background-size: 100% 40%;
-      transition-delay: 0.3s;
-    }
   `;
   document.head.appendChild(style);
 
+  /* ==========================================================================
+     REDAÇÃO ESTRATÉGICA (COPYWRITING)
+     Alterando textos via JS para manter HTML intacto
+     ========================================================================== */
+  
+  // Header Box
+  
+
+  // Widget 1 (Profile)
+  const w1Title = document.querySelector('.widget1 .profile p');
+  if(w1Title) w1Title.innerText = "INTERFACE DESIGNER"; // Mais clean
+  
+  const w1Quote = document.querySelector('.widget1 h2');
+  if(w1Quote) w1Quote.innerText = "Design invisível. Impacto visível. Abaixo, meu sistema operacional pessoal.";
+
+  // Skills
+  const skillTitle = document.querySelector('.skills h1');
+  if(skillTitle) skillTitle.innerText = "Proficiência.";
+
+  // Setup/DNA
+  const setupHeaders = document.querySelectorAll('.setup-widget .model');
+  if(setupHeaders.length >= 3) {
+    setupHeaders[0].innerText = "Apple, Spotfy."; // Era Awwwards
+    setupHeaders[1].innerText = "Café, café e café."; // Era Café
+    setupHeaders[2].innerText = "Obsessão."; // Era Atenção
+  }
+
+  /* ==========================================================================
+     LOGICA DE ANIMAÇÃO (Observer)
+     ========================================================================== */
   const config = [
-    { selector: ".widget1", type: "type-spring" },
-    { selector: ".skills", type: "type-slide" },
-    { selector: ".notes", type: "type-float" }, 
-    { selector: ".status", type: "type-flip" },
-    { selector: ".pet", type: "type-zoom" },
-    { selector: ".londres", type: "type-spring" },
-    { selector: ".widget-music", type: "type-zoom" },
-    { selector: ".me", type: "type-flip" },
-    { selector: ".contact-box", type: "type-slide" },
-    { selector: ".box", type: "type-float" },
+    { selector: ".widget1", type: "type-spring" }, // Perfil
+    { selector: ".skills", type: "type-slide" },   // Skills
+    { selector: ".notes", type: "type-spring" },   // Notas
+    { selector: ".status", type: "type-slide" },   // Status
+    { selector: ".pet", type: "type-zoom" },       // [INTACTO]
+    { selector: ".londres", type: "type-spring" }, // [INTACTO]
+    { selector: ".widget-music", type: "type-zoom" }, // [INTACTO]
+    { selector: ".me", type: "type-slide" },       // [INTACTO]
+    { selector: ".setup-widget", type: "type-zoom" }, // DNA
+    { selector: ".reading-widget", type: "type-slide" }, // Leitura
+    { selector: ".widget-music-2", type: "type-spring" }, // Top 5
+    { selector: ".thank-you-card", type: "type-zoom" }, // Footer
   ];
 
   const observer = new IntersectionObserver(
@@ -117,29 +204,46 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         const el = entry.target;
         
-        // Seleciona os filhos para o efeito de entrada, mas ignora os botões de contato
-        const children = el.querySelectorAll("h2, h3, h4, p, span, i:not(.fa-brands, .fa-solid), .line3, .skills-box p, .perfil");
+        // Seleciona elementos de texto internos para efeito cascata
+        // Excluímos classes que não queremos animar individualmente
+        const children = el.querySelectorAll("h1, h2, h3, h4, p, span, .line3, .track-item");
 
         if (entry.isIntersecting) {
+          // Adiciona classe ativa
           el.classList.add("active-node");
+          
+          // Anima os filhos com delay (Cascata)
           children.forEach((child, i) => {
-            child.classList.add("stagger-child");
-            child.style.transitionDelay = `${0.1 + i * 0.05}s`;
+            // Limita a cascata para não ficar eterna em listas grandes
+            if (i < 8) {
+                child.classList.add("stagger-child");
+                child.style.transitionDelay = `${0.1 + (i * 0.05)}s`;
+            }
           });
         } else {
-          // Mantém o estado se estiver apenas scrollando de leve (evita o pisca)
-          if (entry.boundingClientRect.top > 150) {
+          // Lógica de saída "Inteligente": Só remove se o usuário rolar BEM para cima
+          // Isso evita o "pisca" quando se está lendo o conteúdo
+          if (entry.boundingClientRect.top > 100) {
             el.classList.remove("active-node");
+            children.forEach(child => child.classList.remove("stagger-child"));
           }
         }
       });
     },
-    { threshold: 0.05, rootMargin: "0px 0px -50px 0px" }
+    {
+      threshold: 0.1, // Dispara quando 10% do elemento aparece
+      rootMargin: "0px 0px -10% 0px" // Margem de segurança inferior
+    }
   );
 
+  // Inicialização
   config.forEach((item) => {
-    document.querySelectorAll(item.selector).forEach((el) => {
+    const elements = document.querySelectorAll(item.selector);
+    elements.forEach((el) => {
+      // Adiciona as classes base
       el.classList.add("reveal-base", item.type);
+      // Remove conflitos de estilo inline se houver (hack para garantir animação)
+      el.style.opacity = ""; 
       observer.observe(el);
     });
   });
