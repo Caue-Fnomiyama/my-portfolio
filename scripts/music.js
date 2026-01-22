@@ -29,16 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
       z-index: 3; 
       position: absolute; 
       left: 0;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1);
     }
     .disc { 
       z-index: 4; 
       position: absolute; 
       left: 0;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1);
     }
     
-    .playing-state .album { transform: translateX(-10px); }
+
     
     .playing-state .vinyl { 
       transform: translateX(calc(100% - 60px)); 
