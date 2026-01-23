@@ -41,7 +41,7 @@ html {
 }
 
 body {
-  background: #F5F5F7;
+  background: #f5f5f7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,7 +93,7 @@ header {
   height: auto;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-lg);
-  background: #4cb782;
+  background: #e7fff3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +141,7 @@ header {
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 1rem; 
+  gap: 1rem;
   & a {
     font-size: 1rem;
     color: #398b62;
@@ -154,12 +154,9 @@ header {
   height: auto;
   border-radius: var(--radius-lg);
 
-
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-
-
 }
 
 .pet {
@@ -201,17 +198,17 @@ header {
   flex-direction: column;
   gap: 20px;
 
-& .bom {
-  color: #398b62; /* cor base */
-}
+  & .bom {
+    color: #2f80ed;
+  }
 
-& .regular {
-  color: rgba(57, 139, 98, 0.837);
-}
+  & .regular {
+    color: rgba(47, 128, 237, 0.75);
+  }
 
-& .ruim {
-  color: rgba(57, 139, 98, 0.596);
-}
+  & .ruim {
+    color: rgba(47, 128, 237, 0.55);
+  }
 }
 
 .londres {
@@ -260,9 +257,7 @@ header {
   display: flex;
   gap: var(--spacing-md);
 
- 
   height: auto;
-
 
   & b {
     margin-left: var(--spacing-sm);
@@ -274,11 +269,14 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  background: #ffffff;
-  padding: var(--common-padding);
   display: flex;
+  padding: 40px 0px 40px 0px;
   flex-direction: column;
   gap: var(--spacing-md);
+
+  p {
+    max-width: 90%;
+  }
 }
 
 .notes-box {
@@ -333,7 +331,7 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  background: #fffdf3;
+  background:rgb(255, 255, 255);;
   padding: var(--common-padding);
   display: flex;
   flex-direction: column;
@@ -378,8 +376,6 @@ header {
   gap: 1.5625rem; /* 25px */
 }
 
-
-
 .linkedin,
 .insta,
 .mail,
@@ -390,13 +386,10 @@ header {
   font-size: 14px;
   padding: var(--spacing-md);
   background-color: #00000000;
-
-
-
 }
 
 .verify {
-  color: #ffd54f ;
+  color: #ffd54f;
 }
 
 .social-box {
@@ -605,7 +598,6 @@ header {
   height: 170px;
   border-radius: 4px;
 
-
   background-size: cover;
   background-image: url(/media/livro.jpg);
   background-position: center;
@@ -664,7 +656,6 @@ header {
   gap: 20px;
 
   & h2 {
-    
     font-weight: 100px !important;
   }
 }
@@ -678,12 +669,7 @@ header {
   font-weight: 100;
   color: #838383 !important;
   font-size: 15px;
-
 }
-
-
-
-
 
 .thank-you-card {
   position: relative;
@@ -699,8 +685,6 @@ header {
   overflow: hidden;
 }
 
-
-
 .thank-content p {
   font-size: 1rem;
   max-width: 400px;
@@ -708,7 +692,6 @@ header {
   opacity: 0.8;
   color: #000000 !important;
 }
-
 
 .footer-sign {
   margin-top: 2rem;

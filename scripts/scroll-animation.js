@@ -80,18 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =========================================
        NOTES (Highlighter Functionality)
     ========================================= */
-    .notes {
-      background: #ffffff !important;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    .notes-box h1 {
-
-      background-size: 0% 100%;
-      background-repeat: no-repeat;
-      background-position: 0% 0%;
-      transition: background-size 1s var(--ios-ease);
-      padding: 0 4px;
-    }
+ 
+  
     .active-node .notes-box h1 { background-size: 100% 100%; transition-delay: 0.4s; }
 
     /* =========================================
