@@ -62,21 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
        Correção de animação inclusa
     ========================================= */
     .skills {
-    background-color: #e8f0fa;
+
       opacity: 0;
     }
     
     .skills h1 { color: #000000; }
-    .skills-box { border-left: 1px solid rgba(25, 25, 25, 0.17); }
+ 
     .skills-box p { 
-      font-size: 1.3rem; 
+      font-size: 1.rem; 
       color: #000000; 
       display: flex; 
       justify-content: space-between;
       width: 100%;
       margin-bottom: 8px;
     }
-    .skills-box p b { color: #147849 !important; }
 
     /* =========================================
        NOTES (Highlighter Functionality)

@@ -154,8 +154,7 @@ header {
   height: auto;
   border-radius: var(--radius-lg);
 
-  background: #d2e8db;
-  padding: var(--common-padding);
+
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -188,7 +187,7 @@ header {
 .back {
   width: 100%;
   height: 20.75rem;
-  background-color: #00000043;
+  background-color: #00000021;
   z-index: 1;
   border-radius: var(--radius-lg);
 
@@ -199,7 +198,20 @@ header {
   margin-top: 20px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 20px;
+
+& .bom {
+  color: #398b62; /* cor base */
+}
+
+& .regular {
+  color: rgba(57, 139, 98, 0.837);
+}
+
+& .ruim {
+  color: rgba(57, 139, 98, 0.596);
+}
 }
 
 .londres {
@@ -244,13 +256,13 @@ header {
 }
 
 .skills-box {
-  width: auto;
+  width: 80%;
   display: flex;
-  flex-direction: column;
   gap: var(--spacing-md);
-  padding-left: var(--spacing-md);
+
+ 
   height: auto;
-  border-left: 1px solid #222;
+
 
   & b {
     margin-left: var(--spacing-sm);
