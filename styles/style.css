@@ -93,7 +93,7 @@ header {
   height: auto;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-lg);
-  background: #e7fff3;
+  background: #E8F0FE;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,16 +119,23 @@ header {
 }
 
 .perfil {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: var(--radius-full);
   position: absolute;
-  background-color: var(--text-dark);
-  right: var(--spacing-lg);
-  bottom: var(--spacing-lg);
-  background-image: url(/media/minhafoto.jpg);
+  background-color: #ECECEF;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memoji {
+  width: 3rem;
+  height: 3rem;
+  background-image: url(/media/memoji.png);
   background-size: cover;
-  border: 3px solid #398b62;
 }
 
 .title-box {
@@ -280,7 +287,7 @@ header {
 }
 
 .notes-box {
-  width: 6.25rem;
+  width: 7.25rem;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -331,7 +338,7 @@ header {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  background:rgb(255, 255, 255);;
+  background: rgb(255, 255, 255);
   padding: var(--common-padding);
   display: flex;
   flex-direction: column;

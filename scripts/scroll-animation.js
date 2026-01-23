@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Contatos Minimalistas */
     .contact-box .box { gap: 0px; }
     .linkedin, .insta, .mail, .wpp {
-      backdrop-filter: blur(10px);
+      
    
      
       padding: 0 !important;
