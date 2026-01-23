@@ -560,6 +560,10 @@ header {
   gap: 20px;
 }
 
+.spot {
+  color: #398b62;
+}
+
 .track-item {
   display: flex;
   align-items: center;

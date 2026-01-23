@@ -95,7 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
       background: var(--bg-pro-dark) !important;
       color: white;
     }
-
+    .setup-widget .category { color: #86868b !important; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .setup-widget .model { color: #f5f5f7 !important; font-size: 1.1rem; font-weight: 500; }
+    .setup-icon i { color: #ffffff; }
 
     /* =========================================
        READING (Paper)
