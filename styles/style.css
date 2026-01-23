@@ -253,7 +253,7 @@ header {
 }
 
 .skills-box {
-  width: 80%;
+  width: 90%;
   display: flex;
   gap: var(--spacing-md);
 
@@ -569,6 +569,10 @@ header {
 }
 .track-item:last-child {
   border-bottom: none;
+}
+
+.track-artist {
+  font-size: 10px;
 }
 
 .track-img {
