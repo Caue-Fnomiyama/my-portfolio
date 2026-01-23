@@ -95,9 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       background: var(--bg-pro-dark) !important;
       color: white;
     }
-    .setup-widget .category { color: #86868b !important; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .setup-widget .model { color: #f5f5f7 !important; font-size: 1.1rem; font-weight: 500; }
-    .setup-icon i { color: #ffffff; }
+
 
     /* =========================================
        READING (Paper)
@@ -145,91 +143,61 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.head.appendChild(style);
 
-  /* ==========================================================================
-     REDAÇÃO ESTRATÉGICA (COPYWRITING)
-     Alterando textos via JS para manter HTML intacto
-     ========================================================================== */
-  
-  // Header Box
-  
-
-
-
-  // Skills
-  const skillTitle = document.querySelector('.skills h1');
-  if(skillTitle) skillTitle.innerText = "Proficiência.";
-
-  // Setup/DNA
-  const setupHeaders = document.querySelectorAll('.setup-widget .model');
-  if(setupHeaders.length >= 3) {
-    setupHeaders[0].innerText = "Apple, Spotfy."; // Era Awwwards
-    setupHeaders[1].innerText = "Café, café e café."; // Era Café
-    setupHeaders[2].innerText = "Obsessão."; // Era Atenção
-  }
-
-  /* ==========================================================================
-     LOGICA DE ANIMAÇÃO (Observer)
-     ========================================================================== */
   const config = [
-    { selector: ".widget1", type: "type-spring" }, // Perfil
-    { selector: ".skills", type: "type-slide" },   // Skills
-    { selector: ".notes", type: "type-spring" },   // Notas
-    { selector: ".status", type: "type-slide" },   // Status
-    { selector: ".pet", type: "type-zoom" },       // [INTACTO]
-    { selector: ".londres", type: "type-spring" }, // [INTACTO]
-    { selector: ".widget-music", type: "type-zoom" }, // [INTACTO]
-    { selector: ".me", type: "type-slide" },       // [INTACTO]
-    { selector: ".setup-widget", type: "type-zoom" }, // DNA
-    { selector: ".reading-widget", type: "type-slide" }, // Leitura
-    { selector: ".widget-music-2", type: "type-spring" }, // Top 5
-    { selector: ".thank-you-card", type: "type-zoom" }, // Footer
+    { selector: ".widget1", type: "type-spring" },
+    { selector: ".skills", type: "type-slide" },
+    { selector: ".notes", type: "type-spring" },
+    { selector: ".status", type: "type-slide" },
+    { selector: ".pet", type: "type-zoom" },
+    { selector: ".londres", type: "type-spring" },
+    { selector: ".widget-music", type: "type-zoom" },
+    { selector: ".me", type: "type-slide" },
+    { selector: ".setup-widget", type: "type-zoom" },
+    { selector: ".reading-widget", type: "type-slide" },
+    { selector: ".widget-music-2", type: "type-spring" },
+    { selector: ".thank-you-card", type: "type-zoom" },
   ];
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         const el = entry.target;
-        
-        // Seleciona elementos de texto internos para efeito cascata
-        // Excluímos classes que não queremos animar individualmente
-        const children = el.querySelectorAll("h1, h2, h3, h4, p, span, .line3, .track-item");
+
+        const children = el.querySelectorAll(
+          "h1, h2, h3, h4, p, span, .line3, .track-item",
+        );
 
         if (entry.isIntersecting) {
-          // Adiciona classe ativa
           el.classList.add("active-node");
-          
-          // Anima os filhos com delay (Cascata)
+
           children.forEach((child, i) => {
-            // Limita a cascata para não ficar eterna em listas grandes
             if (i < 8) {
-                child.classList.add("stagger-child");
-                child.style.transitionDelay = `${0.1 + (i * 0.05)}s`;
+              child.classList.add("stagger-child");
+              child.style.transitionDelay = `${0.1 + i * 0.05}s`;
             }
           });
         } else {
-          // Lógica de saída "Inteligente": Só remove se o usuário rolar BEM para cima
-          // Isso evita o "pisca" quando se está lendo o conteúdo
           if (entry.boundingClientRect.top > 100) {
             el.classList.remove("active-node");
-            children.forEach(child => child.classList.remove("stagger-child"));
+            children.forEach((child) =>
+              child.classList.remove("stagger-child"),
+            );
           }
         }
       });
     },
     {
-      threshold: 0.1, // Dispara quando 10% do elemento aparece
-      rootMargin: "0px 0px -10% 0px" // Margem de segurança inferior
-    }
+      threshold: 0.1,
+      rootMargin: "0px 0px -10% 0px",
+    },
   );
 
-  // Inicialização
   config.forEach((item) => {
     const elements = document.querySelectorAll(item.selector);
     elements.forEach((el) => {
-      // Adiciona as classes base
       el.classList.add("reveal-base", item.type);
-      // Remove conflitos de estilo inline se houver (hack para garantir animação)
-      el.style.opacity = ""; 
+
+      el.style.opacity = "";
       observer.observe(el);
     });
   });
