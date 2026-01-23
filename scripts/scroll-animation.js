@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     body {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+
+      
     }
     
     h1 { letter-spacing: -0.02em; }
@@ -42,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     .widget1 .title-box h1 { color: #1d1d1f; font-size: 2.2rem; }
-    .widget1 .title-box p { color: #86868b; font-weight: 500; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; }
-    .widget1 h2 { font-weight: 400; color: #1d1d1f; font-size: 1.3rem; line-height: 1.4; max-width: 90%; }
+    .widget1 .title-box p { color: #86868b; font-weight: 500; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 0.1em; }
+    .widget1 h2 { color: #1d1d1f; font-size: 1.3rem; line-height: 1.4; max-width: 90%; }
     
     /* Contatos Minimalistas */
     .contact-box .box { gap: 0px; }
@@ -162,12 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Header Box
   
 
-  // Widget 1 (Profile)
-  const w1Title = document.querySelector('.widget1 .profile p');
-  if(w1Title) w1Title.innerText = "INTERFACE DESIGNER"; // Mais clean
-  
-  const w1Quote = document.querySelector('.widget1 h2');
-  if(w1Quote) w1Quote.innerText = "Design invisível. Impacto visível. Abaixo, meu sistema operacional pessoal.";
+
 
   // Skills
   const skillTitle = document.querySelector('.skills h1');

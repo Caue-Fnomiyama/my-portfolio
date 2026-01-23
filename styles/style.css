@@ -41,7 +41,7 @@ html {
 }
 
 body {
-  background-color: #f8f1f1;
+  background: #F5F5F7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +73,7 @@ a {
 }
 
 header {
-  margin-top: var(--spacing-lg);
+  margin-top: 5%;
   width: 100%;
   position: relative;
   display: flex;
@@ -82,7 +82,7 @@ header {
 }
 
 .date-box {
-  width: 100%;
+  width: 90%;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -106,15 +106,16 @@ header {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
   text-align: left !important;
 }
 
 .widget1 {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 300px;
   display: flex;
+  align-items: center;
 }
 
 .perfil {
@@ -140,7 +141,11 @@ header {
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 0.1875rem; /* 3px mantido específico */
+  gap: 1rem; 
+  & a {
+    font-size: 1rem;
+    color: #398b62;
+  }
 }
 
 .skills {
@@ -191,6 +196,7 @@ header {
 }
 
 .box {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   gap: 20px;
@@ -709,6 +715,6 @@ header {
 @media (max-width: 768px) {
   .app {
     width: 90%;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
   }
 }
