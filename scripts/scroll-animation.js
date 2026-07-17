@@ -61,25 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     .read-fill { background: #1d1d1f !important; }
     .status-tag { background: #1d1d1f !important; color: white !important; font-weight: 600; letter-spacing: 0.05em; }
 
+    /* FIX 1: tirado "filter" do will-change e da transition.
+       Blur animado é a propriedade mais cara pro navegador pintar,
+       e estava sendo aplicado em ~12 seções ao mesmo tempo — isso
+       é o que travava o touch scroll no Android/Chrome. */
     .reveal-base {
       opacity: 0 !important;
-      will-change: transform, opacity, filter;
-      filter: blur(10px);
+      will-change: transform, opacity;
       transition: 
         transform 1.0s var(--ios-ease), 
-        opacity 1.0s var(--ios-ease), 
-        filter 1.0s var(--ios-ease);
+        opacity 1.0s var(--ios-ease);
     }
 
     .active-node {
       opacity: 1 !important;
       transform: translate3d(0, 0, 0) scale(1) !important;
-      filter: blur(0px) !important;
     }
 
     .type-spring { transform: translateY(60px) scale(0.95); }
     .type-slide { transform: translateX(-40px); }
-    .type-zoom { transform: scale(0.9); filter: blur(15px); }
+    .type-zoom { transform: scale(0.9); }
 
     .stagger-child {
       opacity: 0;
@@ -108,29 +109,44 @@ document.addEventListener("DOMContentLoaded", () => {
     { selector: ".thank-you-card", type: "type-zoom" },
   ];
 
+  // FIX 3: assim que a transition acaba, libera o will-change
+  // (evita manter camadas de composição na GPU o tempo todo)
+  const clearWillChange = (el) => {
+    el.addEventListener(
+      "transitionend",
+      () => {
+        el.style.willChange = "auto";
+      },
+      { once: true },
+    );
+  };
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         const el = entry.target;
-        const children = el.querySelectorAll(
-          "h1, h2, h3, h4, p, span, .line3, .track-item",
-        );
 
+        // FIX 2: anima só uma vez. Antes o observer tirava a classe
+        // "active-node" toda vez que o elemento saía da tela pra cima,
+        // forçando reanimação (e repaint) toda vez que o usuário
+        // rolava pra cima e pra baixo. Agora, uma vez revelado, para
+        // de observar — muito menos trabalho durante o scroll.
         if (entry.isIntersecting) {
+          const children = el.querySelectorAll(
+            "h1, h2, h3, h4, p, span, .line3, .track-item",
+          );
+
           el.classList.add("active-node");
           children.forEach((child, i) => {
             if (i < 8) {
               child.classList.add("stagger-child");
               child.style.transitionDelay = `${0.1 + i * 0.05}s`;
+              clearWillChange(child);
             }
           });
-        } else {
-          if (entry.boundingClientRect.top > 100) {
-            el.classList.remove("active-node");
-            children.forEach((child) =>
-              child.classList.remove("stagger-child"),
-            );
-          }
+          clearWillChange(el);
+
+          observer.unobserve(el);
         }
       });
     },
